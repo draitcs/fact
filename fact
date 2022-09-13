@@ -1,0 +1,45 @@
+#include<iostream> 
+#include<string.h> 
+using namespace std; 
+void fact(int); 
+class invaliddataexception 
+{
+public: 
+char str_what[88]; 
+int what; 
+invaliddataexception() 
+{ 
+*str_what=0; 
+what=0; 
+}
+invaliddataexception(const char *s,int e) 
+{ 
+strcpy(str_what,s); 
+what=e; 
+} 
+};
+void fact(int n) 
+{ 
+int fact=1,i; 
+for(i=1;i<=n;i++) 
+fact=fact*i; 
+cout<<"Factorial is : "<<fact<<"\n"; 
+}
+int main() 
+{ 
+int n; 
+try{ 
+cout<<"Enter no to compute fact:\n"; 
+cin>>n; 
+if(n<0) 
+throw invaliddataexception("Negative number entered is :",n); 
+else
+fact(n); 
+}
+catch(invaliddataexception e) 
+{ 
+cout<<e.str_what<<":"; 
+cout<<e.what<<"\n"; 
+}
+return 0; 
+}
